@@ -1,0 +1,63 @@
+# Workflow per build automatica e deployment su GitHub Pages
+name: Build e Deploy su GitHub Pages
+
+on:
+  # Esegui ad ogni push sul branch main
+  push:
+    branches: ["main"]
+  # Consente l'esecuzione manuale
+  workflow_dispatch:
+
+# Permessi necessari per GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: '10'
+          run_install: false
+
+      - name: Installa dipendenze
+        run: pnpm install
+
+      - name: Build del sito
+        run: pnpm build
+        
+      - name: Crea file .nojekyll
+        run: touch out/.nojekyll
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './out'
+          
+      - name: Deploy su GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 

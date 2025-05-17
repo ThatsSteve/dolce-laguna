@@ -1,0 +1,20 @@
+{
+  "public": "out",
+  "rewrites": [
+    {
+      "source": "/Dolcelaguna/:file",
+      "destination": "/:file"
+    }
+  ],
+  "headers": [
+    {
+      "source": "**/*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    }
+  ]
+} 

@@ -1,0 +1,31 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "serve": "/out/index.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/Dolcelaguna",
+      "serve": "/out/index.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/Dolcelaguna/*",
+      "serve": "/out/*",
+      "statusCode": 200
+    },
+    {
+      "route": "/*.*",
+      "serve": "/out/*.*",
+      "statusCode": 200
+    }
+  ],
+  "platformErrorOverrides": [
+    {
+      "errorType": "NotFound",
+      "serve": "/out/index.html",
+      "statusCode": 200
+    }
+  ]
+}
