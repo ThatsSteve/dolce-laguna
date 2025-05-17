@@ -9,21 +9,32 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useToast } from "../../components/ui/use-toast"
 import { Dialog, DialogContent, DialogClose, DialogTrigger } from "../../components/ui/dialog"
 
+"use client"
+
+import { useState, useEffect, useRef } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { MapPin, Phone, Mail, Clock, Info, CheckCircle2, Calendar, Bed, Utensils, Bus, Car, Bath, Tv, Wifi, LockKeyhole, KeyRound, X, Download, FileText, Luggage } from "lucide-react"
+import { Button } from "../../components/ui/button"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useToast } from "../../components/ui/use-toast"
+import { Dialog, DialogContent, DialogClose, DialogTrigger } from "../../components/ui/dialog"
+
 export default function Informazioni() {
   const [isLoaded, setIsLoaded] = useState(false)
-  const heroRef = useRef(null)
+  const heroRef = useRef<HTMLElement>(null)
   const { toast } = useToast()
   const [scrolled, setScrolled] = useState(false)
   
   // Riferimenti per le sezioni
-  const checkinRef = useRef(null)
-  const serviziRef = useRef(null)
-  const parcheggioRef = useRef(null)
-  const colazioneRef = useRef(null)
-  const interessiRef = useRef(null)
+  const checkinRef = useRef<HTMLElement>(null)
+  const serviziRef = useRef<HTMLElement>(null)
+  const parcheggioRef = useRef<HTMLElement>(null)
+  const colazioneRef = useRef<HTMLElement>(null)
+  const interessiRef = useRef<HTMLElement>(null)
   
   // Riferimento per il titolo dell'indice
-  const indexTitleRef = useRef(null)
+  const indexTitleRef = useRef<HTMLElement>(null)
   
   // Funzione per lo scorrimento animato
   const scrollToSection = (elementRef: React.RefObject<HTMLElement>) => {
