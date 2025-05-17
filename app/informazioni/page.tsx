@@ -26,7 +26,7 @@ export default function Informazioni() {
   const indexTitleRef = useRef(null)
   
   // Funzione per lo scorrimento animato
-  const scrollToSection = (elementRef) => {
+  const scrollToSection = (elementRef: React.RefObject<HTMLElement>) => {
     if (elementRef && elementRef.current) {
       // Offset per mostrare anche il titolo
       const yOffset = -100; 
