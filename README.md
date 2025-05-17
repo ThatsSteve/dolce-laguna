@@ -1,4 +1,4 @@
-# Dolce Laguna
+
 
 Website for Dolce Laguna hotel.
 
