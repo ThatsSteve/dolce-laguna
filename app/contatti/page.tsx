@@ -20,7 +20,8 @@ export default function Contatti() {
     setIsLoaded(true)
   }, [])
 
-  const handleCopyAddress = (address) => {
+  const handleCopyAddress = (address: string) => {
+
     navigator.clipboard.writeText(address);
     setHasCopied(true);
     toast({
@@ -30,7 +31,7 @@ export default function Contatti() {
     setTimeout(() => setHasCopied(false), 2000);
   };
 
-  const handleCopyAddress2 = (address) => {
+  const handleCopyAddress2 = (address: string) => {
     navigator.clipboard.writeText(address);
     setHasCopied2(true);
     toast({
